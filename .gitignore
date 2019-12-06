@@ -1,0 +1,8 @@
+*.o
+*.ali
+b__*
+*.bexch
+main
+vendor/*
+!vendor/.keep
+auto.cgpr
