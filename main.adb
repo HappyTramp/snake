@@ -6,6 +6,8 @@ use  Graphics;
 
 with Queue;
 
+with Game;
+
 procedure Main is
 	state: T_State;
 begin
