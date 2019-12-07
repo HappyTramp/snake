@@ -1,36 +1,25 @@
 with Ada.Text_IO;
 use  Ada.Text_IO;
 
-with SDL;
-with SDL.Error;
-with SDL.Video.Renderers;
-with SDL.Video.Windows;
-
-with SDL.Timers;
-
-with SDL.Video.Windows.Makers;
-use  SDL.Video.Windows.Makers;
-
-with SDL.Video.Renderers.Makers;
-use  SDL.Video.Renderers.Makers;
-
+with Graphics;
+use  Graphics;
 
 procedure Main is
-	window:   SDL.Video.Windows.Window;
-	renderer: SDL.Video.Renderers.Renderer;
+	state: T_State;
 begin
-	if not SDL.Initialise then
-		Put(SDL.Error.Get);
-		return;
-	end if;
-
-	Create(window, "bonjour", 10, 10, 400, 400);
-	Create(renderer, window);
-
-	SDL.Timers.Wait_Delay(1000);
-
-
-
-
-	SDL.Finalise;
+	-- SDL.Initialise;
+	-- Create(window, "bonjour", 10, 10, 400, 400);
+	-- Create(renderer, window);
+	-- Set_Draw_Colour(renderer, (0, 0, 0, 255));
+	-- Clear(renderer);
+	-- Set_Draw_Colour(renderer, (255, 255, 255, 255));
+	-- r := (10, 10, 100, 100);
+	-- Fill(renderer, r);
+	-- Present(renderer);
+	-- SDL.Timers.Wait_Delay(1000);
+	-- SDL.Finalise;
+	--
+	Init(state);
+	Run(state);
+	Quit(state);
 end Main;
