@@ -2,6 +2,6 @@ with "./vendor/sdlada/share/gpr/sdlada.gpr";
 
 project Snake is
 	for Source_Dirs use ("./");
-	for Source_Files use ("main.adb", "graphics.adb", "game.adb");
+	for Source_Files use ("main.adb", "graphics.adb", "game.adb", "queue.adb");
 	for Main use ("main.adb");
 end Snake;

@@ -4,6 +4,8 @@ use  Ada.Text_IO;
 with Graphics;
 use  Graphics;
 
+with Queue;
+
 procedure Main is
 	state: T_State;
 begin
