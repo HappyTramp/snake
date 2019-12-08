@@ -1,3 +1,5 @@
+with Ada.Numerics.Discrete_Random;
+
 with Queue;
 
 package Game is
@@ -17,18 +19,30 @@ package Game is
 		DIRECTION_RIGHT
 	);
 
+	subtype T_Width_Random_Range is Positive range 1..10;
+	subtype T_Height_Random_Range is Positive range 1..10;
+	package P_Width_Random is new Ada.Numerics.Discrete_Random(T_Width_Random_Range);
+	package P_Height_Random is new Ada.Numerics.Discrete_Random(T_Height_Random_Range);
+	use P_Width_Random;
+	use P_Height_Random;
+
 	type T_Game is record
 		height:    Positive;
 		width:     Positive;
 		snake:     T_Queue;
 		direction: T_Direction;
 		food:      T_Position;
+		width_generator: P_Width_Random.Generator;
+		height_generator: P_Height_Random.Generator;
+
 	end record;
 
 	procedure Init(game: out T_Game;
 		           width: Positive;
 				   height: Positive);
 	function Next(game: in out T_Game) return Boolean;
+	procedure Change_Direction(game: in out T_Game;
+		                       direction: T_Direction);
 
 private
 

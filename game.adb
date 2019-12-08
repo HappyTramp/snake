@@ -13,6 +13,9 @@ package body Game is
 		Enqueue(game.snake, (2, 2));
 		Enqueue(game.snake, (2, 3));
 		game.food := (1, 1);
+		Reset(game.width_generator);
+		Reset(game.height_generator);
+		Spawn_Food(game);
 	end Init;
 
 	function Next(game: in out T_Game) return Boolean is
@@ -24,22 +27,35 @@ package body Game is
 		Enqueue(game.snake, new_head);
 		if new_head /= game.food then
 			Dequeue(game.snake);
+		else
+			Spawn_Food(game);
 		end if;
-
 		return true;
 	end Next;
+	procedure Change_Direction(game: in out T_Game;
+		                       direction: T_Direction) is
+	begin
+		case direction is
+			when DIRECTION_UP =>
+				if game.direction /= DIRECTION_DOWN then
+					game.direction := direction;
+				end if;
+			when DIRECTION_DOWN =>
+				if game.direction /= DIRECTION_UP then
+					game.direction := direction;
+				end if;
+			when DIRECTION_LEFT =>
+				if game.direction /= DIRECTION_RIGHT then
+					game.direction := direction;
+				end if;
+			when DIRECTION_RIGHT =>
+				if game.direction /= DIRECTION_LEFT then
+					game.direction := direction;
+				end if;
+		end case;
+	end Change_Direction;
 
 	procedure Spawn_Food(game: in out T_Game) is
-		subtype T_Width_Random_Range is Positive range 1..game.width;
-		subtype T_Height_Random_Range is Positive range 1..game.height;
-		package P_Width_Random is new Ada.Numerics.Discrete_Random(T_Width_Random_Range);
-		package P_Height_Random is new Ada.Numerics.Discrete_Random(T_Height_Random_Range);
-		use P_Width_Random;
-		use P_Height_Random;
-
-		width_random_generator: P_Width_Random.Generator;
-		height_random_generator: P_Height_Random.Generator;
-
 		function Valid_Food(game: T_Game; food: T_Position) return Boolean is
 			cursor: T_List := game.snake.front;
 		begin
@@ -54,9 +70,8 @@ package body Game is
 
 		food: T_Position;
 	begin
-		-- reset in main
 		loop
-			food := (random(height_random_generator), random(width_random_generator));
+			food := (random(game.height_generator), random(game.width_generator));
 			exit when Valid_Food(game, food);
 		end loop;
 		game.food := food;

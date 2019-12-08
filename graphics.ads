@@ -1,4 +1,5 @@
 with SDL;
+with SDL.Timers;
 with SDL.Video.Windows;
 with SDL.Video.Renderers;
 with SDL.Video.Palettes;
@@ -13,6 +14,8 @@ package Graphics is
 	WINDOW_Y:      constant SDL.Natural_Coordinate := 10;
 	WINDOW_WIDTH:  constant SDL.Positive_Dimension := 400;
 	WINDOW_HEIGHT: constant SDL.Positive_Dimension := 400;
+
+	TIME_STEP:     constant SDL.Timers.Milliseconds := 400;
 
 	COLOR_WHITE:   constant SDL.Video.Palettes.Colour := (255, 255, 255, 255);
 	COLOR_BLACK:   constant SDL.Video.Palettes.Colour := (0, 0, 0, 255);
