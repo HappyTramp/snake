@@ -21,7 +21,7 @@ package body Game is
 	function Next(game: in out T_Game) return Boolean is
 		new_head: constant T_Position := Next_Head(game);
 	begin
-		if not In_Border(game, new_head) then
+		if not In_Border(game, new_head) or else In_Body(game, new_head) then
 			return false;
 		end if;
 		Enqueue(game.snake, new_head);
@@ -93,5 +93,17 @@ package body Game is
 	begin
 		return pos.y >= 1 and pos.y <= game.height and pos.x >= 1 and pos.x <= game.width;
 	end In_Border;
+
+	function In_Body(game: T_Game; pos: T_Position) return Boolean is
+		cursor: T_List := game.snake.front;
+	begin
+		while cursor /= null loop
+			if pos = cursor.data then
+				return true;
+			end if;
+			cursor := cursor.next;
+		end loop;
+		return false;
+	end In_Body;
 
 end Game;

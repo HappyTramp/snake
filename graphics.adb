@@ -7,7 +7,6 @@ with SDL.Video.Rectangles;
 with SDL.Events;
 with SDL.Events.Events;
 with SDL.Events.Keyboards;
-use SDL.Events.Keyboards;
 with SDL.Video.Windows;
 with SDL.Video.Windows.Makers;
 with SDL.Video.Renderers;
@@ -58,6 +57,7 @@ package body Graphics is
 	end Run;
 
 	procedure Event_Handler(state: in out T_State) is
+		use SDL.Events.Keyboards;
 		event: SDL.Events.Events.Events;
 	begin
 		while SDL.Events.Events.Poll(event) loop

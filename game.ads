@@ -49,5 +49,6 @@ private
 	procedure Spawn_Food(game: in out T_Game);
 	function Next_Head(game: T_Game) return T_Position;
 	function In_Border(game: T_Game; pos: T_Position) return Boolean;
+	function In_Body(game: T_Game; pos: T_Position) return Boolean;
 
 end Game;
