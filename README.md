@@ -1,6 +1,6 @@
 # Snake
 
-Snake Game in Ada, This is SDL version of a TP on [openclassrooms](https://openclassrooms.com/fr/courses/900279-apprenez-a-programmer-avec-ada/2144821-tp-le-jeu-du-serpent).
+Snake Game in Ada, This is an SDL version of [this](https://openclassrooms.com/fr/courses/900279-apprenez-a-programmer-avec-ada/2144821-tp-le-jeu-du-serpent) on Openclassrooms.
 
 # Usage
 

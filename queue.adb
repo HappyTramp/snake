@@ -1,19 +1,15 @@
 package body Queue is
 
 	procedure Enqueue(queue: in out T_Queue; data: T_Data) is
-		element: T_List_Node;
 		new_back: T_List;
 	begin
-		element.data := data;
-		element.next := null;
-		new_back := new T_List_Node'(element);
-
+		new_back := new T_List_Node'((data => data,
+		                              next => null));
 		if Empty(queue) then
 			queue.front := new_back;
 			queue.back := new_back;
 			return;
 		end if;
-
 		queue.back.next := new_back;
 		queue.back := new_back;
 	end Enqueue;
